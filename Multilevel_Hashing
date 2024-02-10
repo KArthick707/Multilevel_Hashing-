@@ -1,0 +1,34 @@
+function runMultiLevelHashingExample2() 
+% Example usage with user input
+% Prompt the user for input
+dataToHash = input('Enter the message to hash: ', 's'); 
+% Call the multiLevelHashing function
+result = multiLevelHashing(dataToHash); 
+disp('Final Hash:'); 
+disp(result); 
+end
+function finalHash = multiLevelHashing(data) 
+% Level 1: Lightweight SHA-256
+hashLevel1 = DataHash(data, 'SHA-256'); 
+% Level 2: Modified SHA-384
+hashLevel2 = customSHA384(hashLevel1); 
+% Level 3: Heavier SHA-512
+hashLevel3 = customSHA384(hashLevel2); 
+% Level 4: SHA-512
+hashLevel4 = customSHA512(hashLevel3); 
+% Level 5: SHA-512
+hashLevel5 = customSHA512(hashLevel4); 
+% Continue adding more levels as needed
+% Final hash is the result of the last level
+finalHash = hashLevel5; 
+end
+function modifiedHash = customSHA384(input) 
+% Your custom implementation of SHA-384
+% Replace this with your actual implementation
+modifiedHash = DataHash(input, 'SHA-384'); 
+end 
+function modifiedHash = customSHA512(input) 
+% Your custom implementation of SHA-512
+% Replace this with your actual implementation
+modifiedHash = DataHash(input, 'SHA-512'); 
+end
